@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base Theme Variables */
+:root {
+  --bg: #fdfdfc;
+  --bg-card: #ffffff;
+  --border: #e2e2e2;
+  --text: #050505;
+  --text-muted: #454545;
+  --accent: #006b38;
+}
+
+/* Dark Mode Overrides */
+.dark {
+  --bg: #0a0a0a;
+  --bg-card: #141414;
+  --border: #1f1f1f;
+  --text: #e5e5e5;
+  --text-muted: #888888;
+  --accent: #00ff88;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Add a visual texture that adapts to theme */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -20;
+  background-image: radial-gradient(circle, var(--border) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+::selection {
+  background-color: #00ff8830;
+  color: #00ff88;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+}
