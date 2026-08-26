@@ -1,9 +1,10 @@
 import Timeline from '@/components/Timeline'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = { title: 'Timeline' }
 
 export default function TimelinePage() {
   return (
-    <div className="pt-20">
-      <Timeline />
-    </div>
+    <Timeline />
   )
 }

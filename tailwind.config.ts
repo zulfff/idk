@@ -18,8 +18,11 @@ const config: Config = {
         surface: {
           DEFAULT: 'var(--bg)',
           card: 'var(--bg-card)',
+          elevated: 'var(--bg-elevated)',
           border: 'var(--border)',
+          strong: 'var(--border-strong)',
         },
+        contrast: 'var(--accent-contrast)',
         primary: 'var(--text)',
         muted: 'var(--text-muted)',
       },

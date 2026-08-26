@@ -1,35 +1,13 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { timeline } from '@/lib/data'
 
 export default function Timeline() {
   return (
-    <section id="timeline" className="py-24 border-t border-surface-border">
-      <div className="font-mono text-accent text-xs tracking-[0.2em] uppercase mb-12">// exploration_history.log</div>
-      
-      <div className="relative border-l border-surface-border ml-3 space-y-12">
-        {timeline.map((event, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="relative pl-8"
-          >
-            {/* Timeline Dot */}
-            <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 bg-accent rounded-full border-4 border-surface ring-1 ring-accent/20" />
-            
-            <div>
-              <span className="font-mono text-xs text-accent mb-1 block">{event.date}</span>
-              <h3 className="text-lg font-bold mb-2 tracking-tight">{event.title}</h3>
-              <p className="text-muted text-sm leading-relaxed max-w-xl font-light">
-                {event.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+    <section className="page-shell page-section">
+      <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
+        <div><p className="eyebrow">Timeline</p><h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">A practice built one report at a time.</h1></div>
+        <div className="border-t border-surface-border">
+          {timeline.map((event) => <article key={event.date} className="grid gap-3 border-b border-surface-border py-7 sm:grid-cols-[7rem_1fr] sm:gap-8"><time className="font-mono text-sm text-accent">{event.date}</time><div><h2 className="text-xl font-medium tracking-tight">{event.title}</h2><p className="mt-2 max-w-xl leading-7 text-muted">{event.description}</p></div></article>)}
+        </div>
       </div>
     </section>
   )

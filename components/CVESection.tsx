@@ -1,54 +1,13 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { cves } from '@/lib/data'
 
 export default function CVESection() {
   return (
-    <section id="cves" className="py-24">
-      <div className="flex items-end justify-between mb-8 border-l-2 border-accent pl-4 py-1">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight">Security Advisories</h2>
-          <div className="font-mono text-[10px] text-muted uppercase tracking-widest">Vulnerability Disclosure Program (VDP)</div>
+    <section className="page-shell page-section">
+      <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
+        <div><p className="eyebrow">Research</p><h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Findings worth fixing.</h1><p className="mt-6 max-w-sm leading-7 text-muted">A short record of vulnerabilities I&apos;ve disclosed through coordinated security programs.</p></div>
+        <div className="border-t border-surface-border">
+          {cves.map((cve) => <article key={cve.id} className="surface-row py-7"><div className="flex flex-wrap items-baseline justify-between gap-3"><h2 className="font-mono text-lg text-accent">{cve.id}</h2><span className="font-mono text-xs text-muted">{cve.year}</span></div><div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1"><h3 className="font-medium">{cve.project}</h3><span className="text-muted" aria-hidden="true">/</span><p className="text-sm text-muted">{cve.org}</p><span className={`ml-auto font-mono text-[0.65rem] uppercase tracking-[0.12em] ${cve.status === 'published' ? 'text-accent' : 'text-muted'}`}>{cve.status}</span></div><p className="mt-3 max-w-2xl text-sm leading-6 text-muted">{cve.description}</p></article>)}
         </div>
-        <div className="font-mono text-[10px] text-accent font-bold hidden sm:block">4 ENTRIES TOTAL</div>
-      </div>
-
-      <div className="grid gap-6">
-        {cves.map((cve, i) => (
-          <motion.div
-            key={cve.id}
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="group relative border-l-2 border-accent bg-surface-card p-6 border-y border-r border-surface-border rounded-r-lg hover:border-accent transition-colors"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-accent text-lg font-medium">{cve.id}</span>
-                <span className={`text-[10px] uppercase font-mono px-2 py-0.5 rounded border ${
-                    cve.status === 'published' 
-                    ? 'bg-accent/10 text-accent border-accent/20' 
-                    : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
-                  }`}>
-                  {cve.status}
-                </span>
-              </div>
-              <span className="text-xs font-mono text-muted">{cve.year}</span>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <h3 className="font-medium text-primary mb-1">{cve.project}</h3>
-                <p className="text-xs text-muted font-sans">{cve.org}</p>
-              </div>
-              <p className="text-sm text-muted leading-relaxed">
-                {cve.description}
-              </p>
-            </div>
-          </motion.div>
-        ))}
       </div>
     </section>
   )

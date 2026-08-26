@@ -1,11 +1,14 @@
 import Contact from '@/components/Contact'
 import Platforms from '@/components/Platforms'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = { title: 'Contact' }
 
 export default function ContactPage() {
   return (
-    <div className="pt-20">
-      <Platforms />
+    <>
       <Contact />
-    </div>
+      <Platforms />
+    </>
   )
 }

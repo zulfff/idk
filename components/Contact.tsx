@@ -1,39 +1,13 @@
-import { socials } from '@/lib/data'
 import { ArrowUpRight } from 'lucide-react'
+import { socials } from '@/lib/data'
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 border-t border-surface-border">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div className="space-y-6">
-          <div>
-            <p className="font-mono text-accent text-xs tracking-widest uppercase mb-2">// connection</p>
-            <h2 className="text-2xl font-semibold">Get in Touch</h2>
-          </div>
-          <p className="text-muted leading-relaxed max-w-sm">
-            I'm always open to responsible disclosure collaboration, mentorship, or just talking about security.
-          </p>
-        </div>
-
-        <div className="space-y-1">
-          <div className="font-mono text-xs text-muted mb-4 uppercase tracking-widest">// socials</div>
-          {socials.map((social) => (
-            <a
-              key={social.platform}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-between group p-3 -mx-3 rounded-lg hover:bg-surface-card transition-colors border border-transparent hover:border-surface-border"
-            >
-              <div className="flex items-center gap-8">
-                <span className="text-xs font-mono text-muted w-24">{social.platform}</span>
-                <span className="text-sm group-hover:text-accent transition-colors font-mono">
-                  {social.handle}
-                </span>
-              </div>
-              <ArrowUpRight size={14} className="text-muted group-hover:text-accent opacity-0 group-hover:opacity-100 transition-all" />
-            </a>
-          ))}
+    <section className="page-shell page-section">
+      <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
+        <div><p className="eyebrow">Contact</p><h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Let&apos;s talk carefully.</h1><p className="mt-6 max-w-sm leading-7 text-muted">For responsible disclosure, collaboration, or a thoughtful conversation about security, you can find me here.</p></div>
+        <div className="border-t border-surface-border">
+          {socials.map((social) => <a key={social.platform} href={social.url} target="_blank" rel="noopener noreferrer" className="surface-row flex items-center justify-between gap-5 py-5"><span><span className="block text-sm font-medium">{social.platform}</span><span className="mt-1 block text-sm text-muted">{social.handle}</span></span><ArrowUpRight size={17} className="text-muted transition-colors hover:text-accent" strokeWidth={1.7} /></a>)}
         </div>
       </div>
     </section>

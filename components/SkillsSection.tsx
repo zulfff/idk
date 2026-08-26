@@ -1,36 +1,13 @@
-'use client'
-
-import { motion } from 'framer-motion'
 import { skills } from '@/lib/data'
 
 export default function SkillsSection() {
   return (
-    <section id="skills" className="py-24 border-t border-surface-border">
-      <div className="font-mono text-accent text-xs tracking-[0.2em] uppercase mb-8">// technical_stack.sh</div>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {skills.map((skillGroup, i) => (
-          <motion.div
-            key={skillGroup.category}
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="bg-surface-card border border-surface-border p-6 rounded-sm"
-          >
-            <h3 className="font-mono text-xs text-muted uppercase mb-4 tracking-tighter">
-              {skillGroup.category}
-            </h3>
-            <ul className="space-y-2">
-              {skillGroup.items.map((item) => (
-                <li key={item} className="flex items-center gap-3 font-mono text-sm group">
-                  <span className="text-accent opacity-50 group-hover:opacity-100 transition-opacity">&gt;</span>
-                  <span className="text-muted group-hover:text-primary transition-colors">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
+    <section className="page-shell page-section">
+      <div className="grid gap-12 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
+        <div><p className="eyebrow">Practice</p><h1 className="mt-6 text-4xl font-semibold tracking-[-0.04em] sm:text-5xl">Tools are useful. Thinking is the skill.</h1></div>
+        <div className="divide-y divide-surface-border border-y border-surface-border">
+          {skills.map((group) => <div key={group.category} className="grid gap-5 py-7 sm:grid-cols-[0.55fr_1fr] sm:gap-10"><h2 className="font-mono text-xs uppercase tracking-[0.14em] text-accent">{group.category}</h2><ul className="grid grid-cols-2 gap-x-5 gap-y-3 text-sm text-muted">{group.items.map((item) => <li key={item}>{item}</li>)}</ul></div>)}
+        </div>
       </div>
     </section>
   )

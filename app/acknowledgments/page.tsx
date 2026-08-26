@@ -1,9 +1,10 @@
 import Acknowledgments from '@/components/Acknowledgments'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = { title: 'Recognition' }
 
 export default function AcknowledgmentsPage() {
   return (
-    <div className="pt-20">
-      <Acknowledgments />
-    </div>
+    <Acknowledgments />
   )
 }

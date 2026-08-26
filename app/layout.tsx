@@ -1,28 +1,19 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Geist } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import ScrollProgress from '@/components/ScrollProgress'
 
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
-  variable: '--font-mono',
-})
-
-const geist = Geist({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
-
 export const metadata: Metadata = {
-  title: 'Muhammad Arya Arjuna Habibullah — Security Researcher',
-  description: '15-year-old security researcher from Jakarta, Indonesia. CVE contributor and Hall of Famer.',
+  title: {
+    default: 'Muhammad Arya Arjuna Habibullah — Security Researcher',
+    template: '%s — Muhammad Arya Arjuna Habibullah',
+  },
+  description: 'Independent security researcher from Jakarta working across open-source software, public infrastructure, and web applications.',
   openGraph: {
     title: 'Muhammad Arya Arjuna Habibullah — Security Researcher',
-    description: '15-year-old security researcher specializing in vulnerability discovery.',
+    description: 'Independent security researcher working across open-source software, public infrastructure, and web applications.',
     type: 'website',
   },
 }
@@ -33,24 +24,28 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <Script id="theme-loader" strategy="beforeInteractive">
           {`
             (function() {
-              const t = localStorage.getItem('theme') || 'dark';
+              let saved = null;
+              try { saved = localStorage.getItem('theme'); } catch (_) {}
+              const t = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
               document.documentElement.classList.toggle('dark', t === 'dark');
+              document.documentElement.style.colorScheme = t;
             })();
           `}
         </Script>
       </head>
-      <body className={`${geist.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-primary focus:px-4 focus:py-3 focus:text-sm focus:text-surface">
+          Skip to content
+        </a>
         <ScrollProgress />
         <Navbar />
-        <main className="max-w-4xl mx-auto px-6 sm:px-10">
-          {children}
-          <Footer />
-        </main>
+        <main id="main-content">{children}</main>
+        <Footer />
       </body>
     </html>
   )
