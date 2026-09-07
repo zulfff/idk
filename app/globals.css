@@ -1,5 +1,18 @@
 @import "tailwindcss";
-@config "../tailwind.config.ts";
+
+@theme {
+  --font-sans: var(--site-font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--site-font-mono), ui-monospace, SFMono-Regular, monospace;
+  --color-accent: var(--accent);
+  --color-surface: var(--bg);
+  --color-surface-card: var(--bg-card);
+  --color-surface-elevated: var(--bg-elevated);
+  --color-surface-border: var(--border);
+  --color-surface-strong: var(--border-strong);
+  --color-contrast: var(--accent-contrast);
+  --color-primary: var(--text);
+  --color-muted: var(--text-muted);
+}
 
 :root {
   --site-font-sans: "Arial", "Helvetica Neue", sans-serif;
@@ -264,10 +277,6 @@ button {
   }
 }
 
-@theme {
-  --font-sans: var(--site-font-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--site-font-mono), ui-monospace, SFMono-Regular, monospace;
-}
 
 @media (min-width: 1024px) {
   .scene-stage {

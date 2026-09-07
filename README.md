@@ -9,7 +9,7 @@ Personal portfolio for an independent security researcher from Jakarta. Includes
 ## Tech stack
 
 - [Next.js](https://nextjs.org) (App Router) + React 19 + TypeScript
-- [Tailwind CSS v4](https://tailwindcss.com) (CSS-first config via `@config`)
+- [Tailwind CSS v4](https://tailwindcss.com) (CSS-first design tokens in `app/globals.css`)
 - [Three.js](https://threejs.org) for the hero 3D scene (`components/scene`)
 - [lucide-react](https://lucide.dev) icons
 
