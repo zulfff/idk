@@ -1,21 +1,32 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import ScrollProgress from '@/components/ScrollProgress'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
+import ScrollProgress from '@/components/layout/ScrollProgress'
+import PageTransition from '@/components/layout/PageTransition'
+import { PROFILE_FULL_NAME } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Muhammad Arya Arjuna Habibullah — Security Researcher',
-    template: '%s — Muhammad Arya Arjuna Habibullah',
+    default: `${PROFILE_FULL_NAME} — Security Researcher`,
+    template: `%s — ${PROFILE_FULL_NAME}`,
   },
   description: 'Independent security researcher from Jakarta working across open-source software, public infrastructure, and web applications.',
   openGraph: {
-    title: 'Muhammad Arya Arjuna Habibullah — Security Researcher',
+    title: `${PROFILE_FULL_NAME} — Security Researcher`,
     description: 'Independent security researcher working across open-source software, public infrastructure, and web applications.',
     type: 'website',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#f4f2ed' },
+    { media: '(prefers-color-scheme: dark)', color: '#11110f' },
+  ],
 }
 
 export default function RootLayout({
@@ -28,12 +39,19 @@ export default function RootLayout({
       <head>
         <Script id="theme-loader" strategy="beforeInteractive">
           {`
-            (function() {
-              let saved = null;
-              try { saved = localStorage.getItem('theme'); } catch (_) {}
-              const t = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-              document.documentElement.classList.toggle('dark', t === 'dark');
-              document.documentElement.style.colorScheme = t;
+            (function () {
+              try {
+                var params = new URLSearchParams(location.search);
+                var forced = params.get('theme');
+                var stored = localStorage.getItem('theme');
+                var theme = forced === 'dark' || forced === 'light'
+                  ? forced
+                  : stored === 'dark' || stored === 'light'
+                    ? stored
+                    : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+                document.documentElement.style.colorScheme = theme;
+              } catch (_) {}
             })();
           `}
         </Script>
@@ -44,7 +62,7 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <Navbar />
-        <main id="main-content">{children}</main>
+        <main id="main-content"><PageTransition>{children}</PageTransition></main>
         <Footer />
       </body>
     </html>
