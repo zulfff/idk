@@ -1,8 +1,8 @@
-import About from '@/components/sections/About'
+import AboutPersona from '@/components/sections/AboutPersona'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'About' }
 
 export default function AboutPage() {
-  return <About />
+  return <AboutPersona />
 }

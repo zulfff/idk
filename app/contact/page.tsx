@@ -1,14 +1,5 @@
-import Contact from '@/components/sections/Contact'
-import Platforms from '@/components/sections/Platforms'
+import PersonaPage from '@/components/sections/PersonaPage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Contact' }
-
-export default function ContactPage() {
-  return (
-    <>
-      <Contact />
-      <Platforms />
-    </>
-  )
-}
+export default function ContactPage() { return <PersonaPage kind="contact" /> }

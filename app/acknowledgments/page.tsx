@@ -1,8 +1,5 @@
-import AcknowledgmentsSection from '@/components/sections/AcknowledgmentsSection'
+import PersonaPage from '@/components/sections/PersonaPage'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = { title: 'Recognition' }
-
-export default function AcknowledgmentsPage() {
-  return <AcknowledgmentsSection />
-}
+export default function AcknowledgmentsPage() { return <PersonaPage kind="recognition" /> }

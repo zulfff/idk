@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import Script from 'next/script'
 import './globals.css'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ScrollProgress from '@/components/layout/ScrollProgress'
 import PageTransition from '@/components/layout/PageTransition'
+import PersonaWipe from '@/components/layout/PersonaWipe'
 import { PROFILE_FULL_NAME } from '@/lib/site'
 
 export const metadata: Metadata = {
@@ -60,10 +58,8 @@ export default function RootLayout({
         <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:bg-primary focus:px-4 focus:py-3 focus:text-sm focus:text-surface">
           Skip to content
         </a>
-        <ScrollProgress />
-        <Navbar />
+        <PersonaWipe />
         <PageTransition>{children}</PageTransition>
-        <Footer />
       </body>
     </html>
   )
