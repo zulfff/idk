@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { PROFILE_FIRST_NAME, PROFILE_ROLE } from '@/lib/site'
 
 const ITEMS = [
@@ -14,12 +15,18 @@ const ITEMS = [
 ]
 
 export default function P3HomeMenu() {
+  const router = useRouter()
   const [active, setActive] = useState(0)
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     const timer = window.setTimeout(() => setMounted(true), 120)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
+      const onControl = event.target instanceof HTMLElement && event.target.closest('a, button')
       if (event.key === 'ArrowUp' || event.key.toLowerCase() === 'w') {
         event.preventDefault()
         setActive((value) => Math.max(0, value - 1))
@@ -28,13 +35,14 @@ export default function P3HomeMenu() {
         event.preventDefault()
         setActive((value) => Math.min(ITEMS.length - 1, value + 1))
       }
+      if ((event.key === 'Enter' || event.key === ' ') && !onControl) {
+        event.preventDefault()
+        router.push(ITEMS[active].href)
+      }
     }
     window.addEventListener('keydown', onKeyDown)
-    return () => {
-      window.clearTimeout(timer)
-      window.removeEventListener('keydown', onKeyDown)
-    }
-  }, [])
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [active, router])
 
   return (
     <main className="p3-home" id="main-content">

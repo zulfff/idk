@@ -30,9 +30,11 @@ export default function PersonaPage({ kind }: PersonaPageProps) {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      const onControl = event.target instanceof HTMLElement && event.target.closest('a, button')
+      if (onControl && (event.key === 'Enter' || event.key === ' ')) return
       if (event.key === 'ArrowUp' || event.key.toLowerCase() === 'w') { event.preventDefault(); setActive((value) => Math.max(0, value - 1)) }
       if (event.key === 'ArrowDown' || event.key.toLowerCase() === 's') { event.preventDefault(); setActive((value) => Math.min(page.rows.length - 1, value + 1)) }
-      if (event.key === 'Enter' && row?.href) window.open(row.href, '_blank', 'noopener,noreferrer')
+      if ((event.key === 'Enter' || event.key === ' ') && !onControl && row?.href) window.open(row.href, '_blank', 'noopener,noreferrer')
       if (event.key === 'Escape' || event.key.toLowerCase() === 'q') router.push('/')
     }
     window.addEventListener('keydown', onKey)
