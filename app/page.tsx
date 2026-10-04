@@ -1,11 +1,5 @@
-import Hero from '@/components/sections/Hero'
-import HomeOverview from '@/components/sections/HomeOverview'
+import P3HomeMenu from '@/components/sections/P3HomeMenu'
 
 export default function Home() {
-  return (
-    <div className="flex flex-col">
-      <Hero />
-      <HomeOverview />
-    </div>
-  )
+  return <P3HomeMenu />
 }

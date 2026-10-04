@@ -38,10 +38,12 @@ export default function Navbar() {
 
   const themeLabel = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
 
+  if (pathname === '/') return null
+
   return (
-    <header className="sticky top-0 z-50 border-b border-surface-border bg-surface/95 backdrop-blur-md">
+    <header className="site-nav">
       <nav className="site-shell flex h-[4.5rem] items-center justify-between" aria-label="Main navigation">
-        <Link href="/" className="group flex items-center gap-3" aria-label="Home">
+        <Link href="/" className="group flex items-center gap-3 focus-visible:outline-none" aria-label="Home">
           <span className="flex h-8 w-8 items-center justify-center bg-primary font-mono text-xs font-semibold text-surface transition-colors group-hover:bg-accent">MA</span>
           <span className="hidden text-sm font-medium tracking-tight text-primary sm:inline">{PROFILE_FIRST_NAME}</span>
         </Link>
@@ -54,7 +56,7 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 aria-current={active ? 'page' : undefined}
-                className={`text-sm transition-colors ${active ? 'text-accent' : 'text-muted hover:text-primary'}`}
+                className={`text-sm transition-colors focus-visible:outline-none focus-visible:text-accent ${active ? 'text-accent' : 'text-muted hover:text-primary'}`}
               >
                 {link.name}
               </Link>

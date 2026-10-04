@@ -1,20 +1,20 @@
 'use client'
 
 import type { ReactNode } from 'react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import ResearchSceneSlot from '@/components/scene/ResearchSceneSlot'
-import { NAV_LINKS } from '@/lib/site'
 
 export default function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname()
+  if (pathname === '/') return <>{children}</>
+
   return (
-    <div key={pathname} className={`route-enter ${pathname === '/' ? 'home-route' : 'inner-route'}`}>
-      {pathname !== '/' && (
-        <div className="page-instrument site-shell">
-          <ResearchSceneSlot label={NAV_LINKS.find((link) => link.href === pathname)?.name ?? (pathname === '/contact' ? 'Contact' : '404')} />
-        </div>
-      )}
+    <main id="main-content" key={pathname} className="route-enter inner-route">
+      <div className="page-topline site-shell">
+        <Link href="/" className="back-to-menu">← Back to menu</Link>
+        <span aria-hidden="true">RESEARCHER / {pathname.slice(1).toUpperCase()}</span>
+      </div>
       {children}
-    </div>
+    </main>
   )
 }

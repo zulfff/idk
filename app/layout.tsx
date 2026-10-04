@@ -62,7 +62,7 @@ export default function RootLayout({
         </a>
         <ScrollProgress />
         <Navbar />
-        <main id="main-content"><PageTransition>{children}</PageTransition></main>
+        <PageTransition>{children}</PageTransition>
         <Footer />
       </body>
     </html>
