@@ -24,7 +24,7 @@ export default function SectionHeading({
   return (
     <div className={cn('max-w-2xl', className)}>
       <p className="eyebrow">{eyebrow}</p>
-      <Tag className={cn('mt-6 font-semibold tracking-[-0.04em] text-primary', titleClass)}>
+      <Tag className={cn('display-3d mt-6 font-semibold tracking-[-0.04em] text-primary', titleClass)}>
         {title}
       </Tag>
       {intro ? (
