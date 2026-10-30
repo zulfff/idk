@@ -11,6 +11,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+[id] { scroll-margin-top: 88px; }
 body {
   margin: 0;
   background: var(--paper);
@@ -19,6 +20,17 @@ body {
 }
 a { color: inherit; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+
+@keyframes section-enter {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.section, .contact { animation: section-enter .8s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .section, .contact { animation: none; }
+}
 
 .site-shell { overflow: clip; }
 .mono { font-family: var(--font-geist-mono), monospace; }
