@@ -20,8 +20,8 @@ export const articles = [
 ];
 
 export const expertise: Array<[string, string[]]> = [
-  ["Security research", ["Vulnerability Research", "Source Code Auditing", "Fuzzing", "Root Cause Analysis", "Responsible Disclosure"]],
+  ["Security Research", ["Vulnerability Research", "Source Code Auditing", "Fuzzing", "Application Security", "Responsible Disclosure", "Root Cause Analysis"]],
   ["Programming", ["Rust", "Python", "TypeScript", "JavaScript"]],
-  ["Tools", ["Burp Suite", "GDB", "Nuclei", "WPScan", "httpx", "Katana"]],
-  ["Infrastructure", ["Linux", "Networking", "Docker", "VPS Administration", "CI/CD", "eBPF/XDP"]],
+  ["Security & Debugging Tools", ["Burp Suite", "GDB", "Nuclei", "WPScan", "httpx", "Katana", "Linux security tooling"]],
+  ["Infrastructure", ["Linux", "Networking", "Docker", "VPS Administration", "CI/CD", "eBPF / XDP"]],
 ];
